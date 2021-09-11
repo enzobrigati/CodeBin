@@ -1,0 +1,66 @@
+root {
+    --darkblue: #292F40;
+    --lightblue: #34394D;
+    --verylightblue: #3b4358;
+}
+
+html {
+    background-color: #292F40 !important;
+}
+body {
+    background-color: #292F40 !important;
+    color: white !important;
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a.active {
+    background-color: rgba(113, 127, 194, 0.66) !important;
+    font-weight: 800;
+}
+
+::placeholder {
+    color:lightgray !important;
+}
+
+.bg-darkblue {
+    background-color: #292F40;
+}
+.bg-lightblue {
+    background-color: #34394D;
+}
+.bg-verylightblue {
+    background-color: #3b4358;
+}
+
+.text-lightgrey {
+    color:lightgray;
+}
+
+.noborder {
+    border: none !important;
+}
+
+.v-select {
+    background-color: #3b4358 !important;
+    color: white !important;
+}
+.v-select, .vs__selected {
+    color: white !important;
+}
+
+.form-control {
+    background-color: #3b4358 !important;
+    border: none !important;
+    color:white !important;
+}
+
+.notification {
+    font-size: 15px;
+}
