@@ -10,6 +10,7 @@ html {
 body {
     background-color: #292F40 !important;
     color: white !important;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 #app {
@@ -61,6 +62,31 @@ a.active {
     color:white !important;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: #fff !important;
+}
+
 .notification {
     font-size: 15px;
+}
+
+.toast-error {
+    background-color: #da292e;
+}
+.toast-success {
+    background-color: #2fb380;
+}
+.toast-info {
+    background-color: #287bb5;
+}
+.toast-warning {
+    background-color: #f4bd61;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }

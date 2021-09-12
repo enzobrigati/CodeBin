@@ -3,5 +3,5 @@
 {% block title %}{{ paste.title ? paste.title : 'untitled' }} | CodeBin{% endblock %}
 
 {% block body %}
-    <Paste target="{{ paste.id }}"/>
+    <Paste target="{{ paste.id }}" currentuser="{{ app.user ? app.user.id : null }}"/>
 {% endblock %}

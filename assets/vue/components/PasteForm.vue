@@ -104,6 +104,7 @@ export default {
             this.codeInput = null
             this.codeLanguage = "text"
             this.codeTitle = null
+            console.log(response.data)
             redirectHelper('/paste/' + response.data.id)
           }).catch(e => console.warn(e))
       this.loading = false

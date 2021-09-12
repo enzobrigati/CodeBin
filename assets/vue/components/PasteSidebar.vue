@@ -1,7 +1,7 @@
 <template>
   <div class="pastesidebar">
     <div class="card mb-3 mt-4 text-light" style="background-color: #34394D">
-      <div class="card-header">Derniers pastes publiques</div>
+      <div class="card-header">Derniers pastes publics</div>
       <div class="paste_sidebar_list pt-2" v-if="pastes">
         <div class="paste_sidebar_element" v-for="paste in pastes" :key="paste.id">
           <p class="paste_sidebar_element__title mb-0">
@@ -41,7 +41,6 @@ export default {
     getPastes: async function () {
       await axiosInstance.get('/pastes/public')
       .then(response => {
-        console.log(response.data)
         this.pastes = response.data['hydra:member']
       }).catch(e => console.warn(e))
     }

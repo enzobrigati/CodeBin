@@ -13,7 +13,9 @@ class PasteController extends AbstractController
     #[Route('/{id}', name: 'paste.show', requirements: ['id' => '[0-9]*'])]
     public function show(Paste $paste): Response
     {
-        $this->denyAccessUnlessGranted(PasteVoter::READ, $paste);
+        if($paste->getPrivacy() === 'private' && $paste->getUser() !== $this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
         return $this->render('paste/index.html.twig', [
             'paste' => $paste
         ]);

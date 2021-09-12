@@ -24,16 +24,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
             'path' => '/me',
             'method' => 'get',
             'controller' => MeController::class,
-            'read' => false,
             'security' => 'is_granted("ROLE_USER")'
         ]
     ],
     itemOperations: [
-        'get' => [
-            'controller' => NotFoundAction::class,
-            'openapi_context' => ['summary' => 'hidden'],
-            'read' => false,
-            'output' => false
+        "get" => [
+            "denormalization_context" => ['groups' => ['read:paste']]
         ]
     ],
     normalizationContext: ['groups' => ['read:user']]
@@ -121,7 +117,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string)$this->email;
+        return (string)$this->pseudo;
     }
 
     /**

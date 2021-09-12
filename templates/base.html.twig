@@ -5,6 +5,7 @@
     <title>{% block title %}{% endblock %}</title>
     {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/56db22c7fe.js"></script>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -33,21 +34,37 @@
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a href="{{ path('main') }}" class="nav-link active">Accueil</a>
+                        <a href="{{ path('main') }}" class="nav-link {% if current_page is defined and 'index' in current_page %}active{% endif %}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('main') }}" class="nav-link {% if current_page is defined and 'pastes_public' in current_page %}active{% endif %}">Pastes publics</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav my-auto">
-                    <li class="nav-item">
-                        <a href="{{ path('main') }}" class="nav-link btn btn-info">Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ path('main') }}" class="btn btn-dark">Inscription</a>
-                    </li>
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a href="{{ path('main') }}" class="nav-link"><i class="fa fa-user"></i> Mon compte</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_logout') }}" class="nav-link"><i class="fa fa-sign-out"></i> Déconnexion</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ path('app_login') }}" class="nav-link btn btn-info">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('main') }}" class="nav-link btn btn-dark">Inscription</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
+
     {% block body %}{% endblock %}
+</div>
+<div class="footer text-center">
+    <p>&copy <a href="{{ path('main') }}" class="text-white">CodeBin - Tous droits réservés</a> - Une création <a href="https://deob.fr" target="_blank">DEOB</a>.</p>
 </div>
 </body>
 </html>

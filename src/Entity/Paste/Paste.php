@@ -22,8 +22,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
             'controller' => PasteController::class,
         ],
         "post" => [
-            'controller' => PasteCreateController::class,
-            "denormalization_context" => ['groups' => ['create:paste']]
+            "controller" => PasteCreateController::class,
+            "denormalization_context" => ["groups" => ["write:paste", "create:paste"]],
         ]
     ],
     itemOperations: [
@@ -32,7 +32,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ],
         "put" => [
             "security" => "is_granted('CAN_EDIT_PASTE', object)",
-            "denormalization_context" => ['groups' => ['update:paste']]
         ],
         "delete" => [
             "security" => "is_granted('CAN_DELETE_PASTE', object)",
@@ -41,6 +40,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     attributes: [
         'order' => ['createdAt' => 'DESC']
     ],
+    denormalizationContext: ["groups" => ["write:paste"]],
     normalizationContext: ["groups" => ["read:paste"]],
     paginationItemsPerPage: 10
 )]
@@ -63,19 +63,19 @@ class Paste
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Groups(['read:paste', 'create:paste', 'update:paste'])]
+    #[Groups(['read:paste', 'write:paste'])]
     private $title;
 
     /**
      * @ORM\Column(type="text")
      */
-    #[Groups(['read:paste', 'create:paste', 'update:paste'])]
+    #[Groups(['read:paste', 'write:paste'])]
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:paste', 'create:paste', 'update:paste'])]
+    #[Groups(['read:paste', 'write:paste'])]
     private $privacy = "unlisted";
 
     /**
@@ -87,13 +87,13 @@ class Paste
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:paste', 'create:paste', 'update:paste'])]
+    #[Groups(['read:paste', 'write:paste'])]
     private $language = "text";
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="pastes")
      */
-    #[Groups(['read:paste'])]
+    #[Groups(['read:paste', 'create:paste'])]
     private $user;
 
     public function getId(): ?int
