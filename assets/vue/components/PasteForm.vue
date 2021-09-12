@@ -42,9 +42,14 @@
                             javascript: 'JavaScript',
                             html: 'HTML',
                             css: 'CSS',
-                            json: 'JSON'
+                            json: 'JSON',
+                            markdown: 'Markdown',
+                            cpp: 'C++',
+                            csharp: 'C#',
+                            java: 'JAVA',
+                            lua: 'lua'
                           }"
-                                    validation="required|in:text,php,javascript,html,css,json"
+                                    validation="required|in:text,php,javascript,html,css,json,markdown,cpp,csharp,java,lua"
                                     validation-name="visibilité"
                     />
                     <FormulateInput label="Visibilité"

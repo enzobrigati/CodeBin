@@ -146,8 +146,4 @@ export default {
   padding: 5px;
 }
 
-/* optional class for removing the outline */
-.prism-editor__textarea:focus {
-  outline: none;
-}
 </style>

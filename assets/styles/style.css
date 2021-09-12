@@ -90,3 +90,11 @@ input:-webkit-autofill:active  {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.prism-editor__textarea:focus {
+    outline: none !important;
+}
+
+.vs__dropdown-menu {
+    max-height: 10rem;
+}
