@@ -31,6 +31,6 @@ new Vue({
     el: '#app',
     components: {
         PasteForm,
-        Paste
+        Paste,
     }
 })

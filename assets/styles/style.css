@@ -39,9 +39,16 @@ a.active {
 .bg-verylightblue {
     background-color: #3b4358;
 }
+.bg-extralightblue {
+    background-color: #5467b3;
+}
 
 .text-lightgrey {
     color:lightgray;
+}
+
+.text-verylightblue {
+    color: #7d95f6;
 }
 
 .noborder {
@@ -97,4 +104,8 @@ input:-webkit-autofill:active  {
 
 .vs__dropdown-menu {
     max-height: 10rem;
+}
+
+tr:hover {
+    color: white !important;
 }

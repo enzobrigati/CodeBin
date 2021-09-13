@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Action\NotFoundAction;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Controller\Api\Paste\UserGetPastesController;
 use App\Controller\Api\User\MeController;
 use App\Entity\Paste\Paste;
 use App\Repository\UserRepository;
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -25,7 +27,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
             'method' => 'get',
             'controller' => MeController::class,
             'security' => 'is_granted("ROLE_USER")'
-        ]
+        ],
+        "userpastes" => [
+            'method' => 'get',
+            'path' => '/user/pastes',
+            'controller' => UserGetPastesController::class,
+            'openapi_context' => ['summary' => 'Retrieves pastes for the logged user'],
+            "security" => "is_granted('ROLE_USER')",
+            "normalization_context" => ['groups' => ['user:read:paste']]
+        ],
     ],
     itemOperations: [
         "get" => [
@@ -54,6 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
+    #[NotBlank()]
     #[Groups(['read:user'])]
     private $email;
 
@@ -67,11 +78,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
+    #[NotBlank()]
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[NotBlank()]
     #[Groups(['read:paste', 'read:user'])]
     private $pseudo;
 
@@ -83,6 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=Paste::class, mappedBy="user")
      */
+    #[Groups(['user:read:paste'])]
     private $pastes;
 
     public function getId(): ?int

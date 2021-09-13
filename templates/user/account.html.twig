@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                {% for message in app.flashes('account_success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-lightblue">
+                    <div class="card-header">Mes informations</div>
+                    <div class="card-body">
+                        {{ form_start(accountForm, {'attr':{'class':'row'}}) }}
+                        <div class="col-12 col-md-6">
+                            {{ form_row(accountForm.email) }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ form_row(accountForm.currentPassword) }}
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success">Modifier mon compte</button>
+                        </div>
+                        {{ form_end(accountForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="card bg-lightblue">
+                    <div class="card-header">Gestion du mot de passe</div>
+                    <div class="card-body">
+                        {{ form_start(passwordForm, {'attr':{'class':'row'}}) }}
+                        <div class="col-12">
+                            {{ form_row(passwordForm.currentPassword) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(passwordForm._password) }}
+                        </div>
+                        <p class="text-light"><i class="fa fa-exclamation-triangle"></i> Vous devrez vous reconnecter après avoir effectué cette opération.</p>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success">Modifier mon mot de passe</button>
+                        </div>
+                        {{ form_end(accountForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

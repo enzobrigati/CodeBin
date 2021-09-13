@@ -57,37 +57,37 @@ class Paste
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    #[Groups(['read:paste'])]
+    #[Groups(['read:paste', 'user:read:paste'])]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Groups(['read:paste', 'write:paste'])]
+    #[Groups(['read:paste', 'write:paste', 'user:read:paste'])]
     private $title;
 
     /**
      * @ORM\Column(type="text")
      */
-    #[Groups(['read:paste', 'write:paste'])]
+    #[Groups(['read:paste', 'write:paste', 'user:read:paste'])]
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:paste', 'write:paste'])]
+    #[Groups(['read:paste', 'write:paste', 'user:read:paste'])]
     private $privacy = "unlisted";
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    #[Groups(['read:paste'])]
+    #[Groups(['read:paste', 'user:read:paste'])]
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:paste', 'write:paste'])]
+    #[Groups(['read:paste', 'write:paste', 'user:read:paste'])]
     private $language = "text";
 
     /**
