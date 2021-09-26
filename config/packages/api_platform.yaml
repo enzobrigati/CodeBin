@@ -1,5 +1,6 @@
 api_platform:
     show_webby: false
+    enable_docs: false
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:
