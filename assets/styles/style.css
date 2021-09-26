@@ -7,6 +7,7 @@ root {
 html {
     background-color: #292F40 !important;
 }
+
 body {
     background-color: #292F40 !important;
     color: white !important;
@@ -19,6 +20,11 @@ body {
 
 a {
     text-decoration: none !important;
+    color: #afc7ec;
+}
+
+a:hover {
+    color: #d3e3f1;
 }
 
 a.active {
@@ -27,24 +33,27 @@ a.active {
 }
 
 ::placeholder {
-    color:lightgray !important;
+    color: lightgray !important;
 }
 
 .bg-darkblue {
     background-color: #292F40;
 }
+
 .bg-lightblue {
     background-color: #34394D;
 }
+
 .bg-verylightblue {
     background-color: #3b4358;
 }
+
 .bg-extralightblue {
     background-color: #5467b3;
 }
 
 .text-lightgrey {
-    color:lightgray;
+    color: lightgray;
 }
 
 .text-verylightblue {
@@ -59,6 +68,7 @@ a.active {
     background-color: #3b4358 !important;
     color: white !important;
 }
+
 .v-select, .vs__selected {
     color: white !important;
 }
@@ -66,13 +76,13 @@ a.active {
 .form-control {
     background-color: #3b4358 !important;
     border: none !important;
-    color:white !important;
+    color: white !important;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active  {
+input:-webkit-autofill:active {
     transition: background-color 5000s;
     -webkit-text-fill-color: #fff !important;
 }
@@ -84,12 +94,15 @@ input:-webkit-autofill:active  {
 .toast-error {
     background-color: #da292e;
 }
+
 .toast-success {
     background-color: #2fb380;
 }
+
 .toast-info {
     background-color: #287bb5;
 }
+
 .toast-warning {
     background-color: #f4bd61;
 }

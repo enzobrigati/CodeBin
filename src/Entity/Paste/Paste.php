@@ -7,6 +7,8 @@ use App\Controller\Api\Paste\PasteController;
 use App\Controller\Api\Paste\PasteCreateController;
 use App\Entity\User;
 use App\Repository\Paste\PasteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -50,6 +52,7 @@ class Paste
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->reports = new ArrayCollection();
     }
 
     /**
@@ -95,6 +98,11 @@ class Paste
      */
     #[Groups(['read:paste', 'create:paste'])]
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Report::class, mappedBy="paste", orphanRemoval=true)
+     */
+    private $reports;
 
     public function getId(): ?int
     {
@@ -169,6 +177,36 @@ class Paste
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Report[]
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
+
+    public function addReport(Report $report): self
+    {
+        if (!$this->reports->contains($report)) {
+            $this->reports[] = $report;
+            $report->setPaste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Report $report): self
+    {
+        if ($this->reports->removeElement($report)) {
+            // set the owning side to null (unless already changed)
+            if ($report->getPaste() === $this) {
+                $report->setPaste(null);
+            }
+        }
 
         return $this;
     }

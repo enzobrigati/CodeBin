@@ -7,6 +7,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Controller\Api\Paste\UserGetPastesController;
 use App\Controller\Api\User\MeController;
 use App\Entity\Paste\Paste;
+use App\Entity\Paste\Report;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -51,6 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->pastes = new ArrayCollection();
+        $this->reports = new ArrayCollection();
     }
 
     /**
@@ -98,6 +100,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[Groups(['user:read:paste'])]
     private $pastes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Report::class, mappedBy="owner", orphanRemoval=true)
+     */
+    private $reports;
 
     public function getId(): ?int
     {
@@ -236,6 +243,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($paste->getUser() === $this) {
                 $paste->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Report[]
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
+
+    public function addReport(Report $report): self
+    {
+        if (!$this->reports->contains($report)) {
+            $this->reports[] = $report;
+            $report->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Report $report): self
+    {
+        if ($this->reports->removeElement($report)) {
+            // set the owning side to null (unless already changed)
+            if ($report->getOwner() === $this) {
+                $report->setOwner(null);
             }
         }
 

@@ -17,7 +17,7 @@
               <span class="badge bg-verylightblue text-uppercase">{{ paste.privacy }}</span>
               <div class="mb-3 float-end">
                 <a href="#" class="badge bg-light" @click="handleCopy"><i class="fa fa-copy"></i> Copier</a> &nbsp;
-                <a href="#" class="badge bg-warning text-dark"><i class="fa fa-flag"></i> Signaler</a>
+                <a :href="'/paste/report/' + pasteId" class="badge bg-warning text-dark"><i class="fa fa-flag"></i> Signaler</a>
                 <a href="#" class="badge bg-danger text-light" @click="handleDelete"
                    v-if="parseInt(this.pasteOwner) === parseInt(this.currentuser)"><i class="fa fa-trash"></i> Supprimer</a>
                 <div class="editorMode mt-1" v-if="parseInt(this.pasteOwner) === parseInt(this.currentuser)">
@@ -93,7 +93,6 @@ export default {
             this.pasteCode = response.data.content
             this.pasteLanguage = response.data.language
             this.pasteOwner = response.data.user ? response.data.user.id : null
-            console.log(response.data)
           }).catch((e) => console.log(e))
     },
     highlighter: function (code) {
@@ -112,9 +111,11 @@ export default {
     },
     handleDelete: async function (e) {
       e.preventDefault()
-      await axiosInstance.delete('/pastes/' + this.pasteId)
-      .then(() => redirectHelper('/'))
-      .catch(e => console.warn(e))
+      if(confirm('Êtes-vous sur de vouloir supprimer votre paste ?')) {
+        await axiosInstance.delete('/pastes/' + this.pasteId)
+            .then(() => redirectHelper('/'))
+            .catch(e => console.warn(e))
+      }
 
     },
     handleCopy: function (e) {

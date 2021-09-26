@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Signaler un paste{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                {% for message in app.flashes('report_success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-lightblue">
+                    <div class="card-header">Signaler le paste : <a href="{{ path('paste.show', {id: paste.id}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></div>
+                    <div class="card-body">
+                        {{ form_start(form, {'attr':{'class':'row'}}) }}
+                        <div class="col-12">
+                            {{ form_row(form.reason) }}
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success">Signaler le paste</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

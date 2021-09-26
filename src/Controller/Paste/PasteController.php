@@ -3,6 +3,8 @@
 namespace App\Controller\Paste;
 
 use App\Entity\Paste\Paste;
+use App\Entity\Paste\Report;
+use App\Form\Paste\ReportType;
 use App\Repository\Paste\PasteRepository;
 use App\Security\Voter\PasteVoter;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,6 +44,32 @@ class PasteController extends AbstractController
         }
         return $this->render('paste/index.html.twig', [
             'paste' => $paste
+        ]);
+    }
+
+    #[Route(path: '/paste/report/{id}', name: 'paste.report', requirements: ['id' => '[0-9]*'])]
+    public function report(Paste $paste, Request $request): Response
+    {
+        if ($paste->getPrivacy() === 'private') {
+            return $this->redirectToRoute('main');
+        }
+
+        $report = new Report();
+        $reportForm = $this->createForm(ReportType::class, $report);
+        $reportForm->handleRequest($request);
+
+        if ($reportForm->isSubmitted() && $reportForm->isValid()) {
+            $report->setOwner($this->getUser());
+            $report->setPaste($paste);
+            $this->em->persist($report);
+            $this->em->flush();
+            $this->addFlash('report_success', 'Merci pour votre aide, le paste a bien été signalé à notre équipe.');
+            return $this->redirectToRoute('paste.report', ['id' => $paste->getId()]);
+        }
+
+        return $this->render('paste/report.html.twig', [
+            'paste' => $paste,
+            'form' => $reportForm->createView()
         ]);
     }
 

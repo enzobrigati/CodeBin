@@ -23,7 +23,6 @@ class PasteVoter extends Voter
     {
         $user = $token->getUser();
         /** @var Paste $subject */
-        $paste = $subject;
 
         switch ($attribute) {
             case self::READ:
@@ -35,7 +34,7 @@ class PasteVoter extends Voter
                 break;
             case self::EDIT:
             case self::DELETE:
-                return $subject->getUser() === $user;
+                return $subject->getUser() === $user || in_array('ROLE_MODERATOR', $user->getRoles());
         }
 
         return false;

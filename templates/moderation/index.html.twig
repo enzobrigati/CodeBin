@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modération{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                {% for message in app.flashes('moderation_success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-12">
+                <div class="card bg-lightblue">
+                    <div class="card-header">Signalements en attente
+                        {% if reports|length > 0 %}
+                            <span class="badge bg-danger">{{ reports|length }}</span>
+                        {% elseif reports|length <= 0 %}
+                            <span class="badge bg-success">Tous les signalements ont été traités.</span>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-responsive bg-verylightblue table-hover border-dark rounded-3 text-white"
+                               id="reports">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">PASTE</th>
+                                <th scope="col">REPORT EFFECTUÉ LE</th>
+                                <th scope="col">SIGNALÉ PAR</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for report in reports %}
+                                <tr>
+                                    <th>{{ report.id }}</th>
+                                    <th scope="row"><a
+                                                href="{{ path('paste.show', {id: report.paste.id}) }}">{{ report.paste.title ? report.paste.title : 'untitled' }}</a>
+                                    </th>
+                                    <td>Le {{ report.createdAt | date('d-m-Y à H:i') }}</td>
+                                    <td>{{ report.owner.pseudo }}</td>
+                                    <td><a href="{{ path('moderation.report.show', {id: report.id}) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Voir le
+                                            signalement</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#reports').DataTable({
+                "order": [[2, "desc"]]
+            });
+        });
+    </script>
+{% endblock %}

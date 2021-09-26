@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ paste.title ? paste.title : 'untitled' }} | CodeBin{% endblock %}
+{% block title %}{{ paste.title ? paste.title : 'untitled' }}{% endblock %}
 
 {% block body %}
     <Paste target="{{ paste.id }}" currentuser="{{ app.user ? app.user.id : null }}"/>
