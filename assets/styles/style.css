@@ -127,3 +127,14 @@ tr:hover {
     content:" *";
     color: red;
 }
+
+.dropdown-menu {
+    background-color: #34394D;
+    border-color: #3B4358;
+}
+.dropdown-item {
+    color: white;
+}
+.dropdown-item:hover {
+    background-color: #3B4358;
+}

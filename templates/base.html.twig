@@ -57,6 +57,16 @@
                 </ul>
                 <ul class="navbar-nav my-auto">
                     {% if app.user %}
+                        {% if is_granted('ROLE_SUPERADMIN') %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-shield text-danger"></i> Administration
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ path('admin.users.list') }}">Utilisateurs</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
                         {% if is_granted('ROLE_MODERATOR') %}
                             <li class="nav-item">
                                 <a href="{{ path('moderation.main') }}"
@@ -71,13 +81,11 @@
                         {% endif %}
                         <li class="nav-item">
                             <a href="{{ path('user.profil', {pseudo: app.user.pseudo}) }}"
-                               class="nav-link {% if current_page is defined and 'user_profil' in current_page %}active{% endif %}"><i
-                                        class="fa fa-user"></i> Mon profil</a>
+                               class="nav-link {% if current_page is defined and 'user_profil' in current_page %}active{% endif %}"><i class="fas fa-user-tie"></i> Mon profil</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ path('user.account') }}"
-                               class="nav-link {% if current_page is defined and 'user_account' in current_page %}active{% endif %}"><i
-                                        class="fa fa-user"></i> Mon compte</a>
+                               class="nav-link {% if current_page is defined and 'user_account' in current_page %}active{% endif %}"><i class="far fa-user"></i> Mon compte</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ path('app_logout') }}" class="nav-link"><i class="fa fa-sign-out"></i>

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'utilisateur {{ user.pseudo }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <a href="{{ path('admin.users.list') }}" class="btn btn-primary float-end"><i class="fa fa-undo"></i> Retourner à la liste des utilisateurs</a>
+            </div>
+            <div class="col-12">
+                {% for message in app.flashes('admin_user_success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-lightblue">
+                    <div class="card-header">Informations de l'utilisateur : {{ user.pseudo }}</div>
+                    <div class="card-body">
+                        {{ form_start(form, {'attr':{'class':'row'}}) }}
+                        <div class="col-12 col-md-6">
+                            {{ form_row(form.email) }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ form_row(form.pseudo) }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ form_row(form.biographie) }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ form_row(form.avatarUrl) }}
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success">Modifier le compte</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
