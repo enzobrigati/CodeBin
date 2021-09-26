@@ -10,6 +10,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -41,6 +42,16 @@ class UserAccountController extends AbstractController
             'mapped' => false
         ]);
         $accountForm->handleRequest($request);
+
+        if ($accountForm->isSubmitted() && $accountForm->get('avatarUrl')->getData()) {
+            $fileInfo = pathinfo($accountForm->get('avatarUrl')->getData());
+            $extension = $fileInfo['extension'];
+            if ($extension && ($extension !== 'png' && $extension !== 'jpg')) {
+                $accountForm->get('avatarUrl')->addError(new FormError('Votre image doit obligatoirement être au format .png ou .jpg'));
+            } elseif(!$extension) {
+                $accountForm->get('avatarUrl')->addError(new FormError('Impossible de déterminer l\'extension de l\'image.'));
+            }
+        }
 
         if ($accountForm->isSubmitted() && $accountForm->isValid()) {
             $this->em->flush();

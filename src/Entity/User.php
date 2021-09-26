@@ -115,6 +115,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $biographie;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $avatarUrl;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -296,6 +301,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBiographie(?string $biographie): self
     {
         $this->biographie = $biographie;
+
+        return $this;
+    }
+
+    public function getAvatarUrl(): ?string
+    {
+        return $this->avatarUrl;
+    }
+
+    public function setAvatarUrl(?string $avatarUrl): self
+    {
+        $this->avatarUrl = $avatarUrl;
 
         return $this;
     }

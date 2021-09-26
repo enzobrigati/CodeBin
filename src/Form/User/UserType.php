@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -38,6 +39,11 @@ class UserType extends AbstractType
             ->add('biographie', TextareaType::class, [
                 'label' => 'Dîtes-nous en plus sur vous',
                 'attr' => ['placeholder' => 'Quelques informations supplémentaires que vous aimeriez partager avec la communauté...'],
+                'required' => false
+            ])
+            ->add('avatarUrl', UrlType::class, [
+                'label' => 'Lien vers votre image de profil',
+                'attr' => ['placeholder' => 'Lien vers votre image de profil'],
                 'required' => false
             ])
         ;
