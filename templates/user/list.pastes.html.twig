@@ -36,6 +36,9 @@
                             {% endfor %}
                             </tbody>
                         </table>
+                        {% if pastes.count <= 0 %}
+                            <div class="alert alert-info">Vous n'avez posté aucun paste pour le moment. <a href="{{ path('main') }}" class="text-primary">Qu'attendez-vous ?</a> </div>
+                        {% endif %}
                         <div class="float-end">
                             {{ knp_pagination_render(pastes) }}
                         </div>

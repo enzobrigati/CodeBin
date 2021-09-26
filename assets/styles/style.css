@@ -122,3 +122,8 @@ input:-webkit-autofill:active {
 tr:hover {
     color: white !important;
 }
+
+.required:after {
+    content:" *";
+    color: red;
+}

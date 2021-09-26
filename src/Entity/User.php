@@ -110,6 +110,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $reports;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $biographie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -279,6 +284,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $report->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBiographie(): ?string
+    {
+        return $this->biographie;
+    }
+
+    public function setBiographie(?string $biographie): self
+    {
+        $this->biographie = $biographie;
 
         return $this;
     }

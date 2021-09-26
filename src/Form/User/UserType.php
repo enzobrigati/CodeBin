@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +18,7 @@ class UserType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Votre adresse email',
-                'attr' => ['placeholder' => 'Votre adresse email']
+                'attr' => ['placeholder' => 'Votre adresse email'],
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -33,6 +34,11 @@ class UserType extends AbstractType
             ->add('pseudo', null, [
                 'label' => 'Votre pseudo',
                 'attr' => ['placeholder' => 'Votre pseudo']
+            ])
+            ->add('biographie', TextareaType::class, [
+                'label' => 'Dîtes-nous en plus sur vous',
+                'attr' => ['placeholder' => 'Quelques informations supplémentaires que vous aimeriez partager avec la communauté...'],
+                'required' => false
             ])
         ;
     }
