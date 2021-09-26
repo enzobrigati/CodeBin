@@ -39,7 +39,7 @@ class PasteController extends AbstractController
     #[Route('/paste/{id}', name: 'paste.show', requirements: ['id' => '[0-9]*'])]
     public function show(Paste $paste): Response
     {
-        if ($paste->getPrivacy() === 'private' && $paste->getUser() !== $this->getUser()) {
+        if ($paste->getPrivacy() === 'private' && $paste->getUser() !== $this->getUser() && !$this->isGranted('ROLE_MODERATOR')) {
             return $this->redirectToRoute('main');
         }
         return $this->render('paste/index.html.twig', [

@@ -5,9 +5,14 @@ namespace App\Security\Voter;
 use App\Entity\Paste\Paste;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\Security;
 
 class PasteVoter extends Voter
 {
+
+    public function __construct(private Security $security)
+    {
+    }
 
     const READ = 'CAN_READ_PASTE';
     const EDIT = 'CAN_EDIT_PASTE';
@@ -26,6 +31,9 @@ class PasteVoter extends Voter
 
         switch ($attribute) {
             case self::READ:
+                if ($this->security->isGranted('ROLE_MODERATOR')) {
+                    return true;
+                }
                 if ($subject->getPrivacy() === 'private' && $subject->getUser() === $user) {
                     return true;
                 } elseif ($subject->getPrivacy() !== 'private') {
@@ -34,7 +42,10 @@ class PasteVoter extends Voter
                 break;
             case self::EDIT:
             case self::DELETE:
-                return $subject->getUser() === $user || in_array('ROLE_MODERATOR', $user->getRoles());
+                if ($this->security->isGranted('ROLE_MODERATOR')) {
+                    return true;
+                }
+                return $subject->getUser() === $user;
         }
 
         return false;

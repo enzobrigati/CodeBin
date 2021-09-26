@@ -9,10 +9,11 @@
                 <div class="card bg-lightblue">
                     <div class="card-header">Pastes publics</div>
                     <div class="card-body">
-                        <table class="table bg-verylightblue table-hover border-dark rounded-3 table-sm text-white">
+                        <table class="table bg-verylightblue table-hover border-dark rounded-3 table-responsive text-white">
                             <thead>
                             <tr>
                                 <th scope="col">Nom</th>
+                                <th scope="col">Utilisateur</th>
                                 <th scope="col">Posté</th>
                                 <th scope="col">Langage</th>
                             </tr>
@@ -20,7 +21,8 @@
                             <tbody>
                             {% for paste in pastes %}
                             <tr>
-                                <th scope="row"><a class="text-verylightblue" href="{{ path('paste.show', {id: paste.id}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></th>
+                                <th scope="row"><a href="{{ path('paste.show', {id: paste.id}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></th>
+                                <td>{{ paste.user.pseudo }}</td>
                                 <td>{{ paste.createdAt | ago }}</td>
                                 <td><span class="badge bg-primary">{{ paste.language | upper }}</span></td>
                             </tr>

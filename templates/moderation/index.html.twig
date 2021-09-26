@@ -19,32 +19,35 @@
                         {% endif %}
                     </div>
                     <div class="card-body">
-                        <table class="table table-responsive bg-verylightblue table-hover border-dark rounded-3 text-white"
-                               id="reports">
-                            <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">PASTE</th>
-                                <th scope="col">REPORT EFFECTUÉ LE</th>
-                                <th scope="col">SIGNALÉ PAR</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for report in reports %}
+                        <div class="col-12 mb-2"><a href="{{ path('moderation.paste.list') }}" class="btn btn-primary float-end">Voir tous les pastes</a></div>
+                        <div class="col-12">
+                            <table class="table table-responsive bg-verylightblue table-hover border-dark rounded-3 text-white"
+                                   id="reports">
+                                <thead>
                                 <tr>
-                                    <th>{{ report.id }}</th>
-                                    <th scope="row"><a
-                                                href="{{ path('paste.show', {id: report.paste.id}) }}">{{ report.paste.title ? report.paste.title : 'untitled' }}</a>
-                                    </th>
-                                    <td>Le {{ report.createdAt | date('d-m-Y à H:i') }}</td>
-                                    <td>{{ report.owner.pseudo }}</td>
-                                    <td><a href="{{ path('moderation.report.show', {id: report.id}) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Voir le
-                                            signalement</a></td>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">PASTE</th>
+                                    <th scope="col">REPORT EFFECTUÉ LE</th>
+                                    <th scope="col">SIGNALÉ PAR</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                {% for report in reports %}
+                                    <tr>
+                                        <th>{{ report.id }}</th>
+                                        <th scope="row"><a
+                                                    href="{{ path('paste.show', {id: report.paste.id}) }}">{{ report.paste.title ? report.paste.title : 'untitled' }}</a>
+                                        </th>
+                                        <td>Le {{ report.createdAt | date('d-m-Y à H:i') }}</td>
+                                        <td>{{ report.owner.pseudo }}</td>
+                                        <td><a href="{{ path('moderation.report.show', {id: report.id}) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Voir le
+                                                signalement</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

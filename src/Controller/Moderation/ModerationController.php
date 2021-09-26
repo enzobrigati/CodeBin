@@ -4,6 +4,7 @@ namespace App\Controller\Moderation;
 
 use App\Entity\Paste\Paste;
 use App\Entity\Paste\Report;
+use App\Repository\Paste\PasteRepository;
 use App\Repository\Paste\ReportRepository;
 use App\Security\Voter\PasteVoter;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/moderation')]
 class ModerationController extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $em, private ReportRepository $reportRepository)
+    public function __construct(private EntityManagerInterface $em, private ReportRepository $reportRepository, private PasteRepository $pasteRepository)
     {
     }
 
@@ -26,6 +27,15 @@ class ModerationController extends AbstractController
         return $this->render('moderation/index.html.twig', [
             'reports' => $reports,
             'current_page' => ['moderation']
+        ]);
+    }
+
+    #[Route(path: '/paste/all', name: 'moderation.paste.list')]
+    public function listPaste(): Response
+    {
+        $pastes = $this->pasteRepository->findAll();
+        return $this->render('moderation/listpaste.html.twig', [
+            'pastes' => $pastes
         ]);
     }
 
