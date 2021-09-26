@@ -7,6 +7,11 @@
        <div class="card bg-lightblue">
            <div class="card-header">Créer un nouveau compte</div>
            <div class="card-body">
+               {% for message in app.flashes('register_error') %}
+               <div class="col-12">
+                   <div class="alert alert-danger">{{ message }}</div>
+               </div>
+               {% endfor %}
                {{ form_start(form, {'attr':{'class':'row'}}) }}
                <div class="col-12 col-md-6">
                    {{ form_row(form.email) }}
