@@ -62,7 +62,7 @@
                     />
                   </div>
                   <div class="col-6"></div>
-                  <div class="col-3 mt-4">
+                  <div class="col-12 col-md-4 mt-4">
                     <FormulateInput type="submit" label="Créer un nouveau paste"
                                     :input-class="['btn btn-primary']"
                                     :disabled="loading"/>

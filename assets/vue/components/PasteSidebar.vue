@@ -9,7 +9,7 @@
               {{ paste.title ? paste.title : 'untitled'}}
             </a>
           </p>
-          <p class="paste_sidebar_element__subtitle small text-muted mt-0"><span class="text-capitalize">{{ paste.language }}</span> | <TimeAgo locale="fr" :datetime="paste.createdAt" long></TimeAgo></p>
+          <p class="paste_sidebar_element__subtitle small text-muted mt-0"><span class="text-uppercase">{{ paste.language }}</span> | <TimeAgo locale="fr" :datetime="paste.createdAt" long></TimeAgo></p>
         </div>
       </div>
       <div class="text-center p-2" v-else>
