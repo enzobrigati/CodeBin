@@ -33,6 +33,21 @@
                             {{ form_row(form.avatarUrl) }}
                         </div>
                         <div class="col-12">
+                            {{ form_row(form.roles) }}
+                            <p class="text-danger small">
+                                <strong>Rôle actuel :
+                                    {% if "ROLE_MODERATOR" in user.roles %}
+                                        Administrateur
+                                    {% elseif "ROLE_SUPERADMIN" in user.roles %}
+                                        Super Administrateur
+                                    {% elseif "ROLE_USER" in user.roles %}
+                                        Membre
+                                    {% else %}
+                                        Membre
+                                    {% endif %}</strong>
+                            </p>
+                        </div>
+                        <div class="col-12">
                             <button type="submit" class="btn btn-success">Modifier le compte</button>
                         </div>
                         {{ form_end(form) }}
