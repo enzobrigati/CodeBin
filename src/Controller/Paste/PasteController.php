@@ -9,6 +9,7 @@ use App\Repository\Paste\PasteRepository;
 use App\Security\Voter\PasteVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,6 +49,7 @@ class PasteController extends AbstractController
     }
 
     #[Route(path: '/paste/report/{id}', name: 'paste.report', requirements: ['id' => '[0-9]*'])]
+    #[IsGranted('ROLE_USER')]
     public function report(Paste $paste, Request $request): Response
     {
         if ($paste->getPrivacy() === 'private') {

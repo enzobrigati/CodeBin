@@ -123,7 +123,7 @@ export default {
       navigator.clipboard.writeText(this.pasteCode)
           .then(() => notify('Succès !', 'Le code a bien été copié dans le presse-papier.', 'success'))
           .catch(() => notify('Oups...', 'Impossible de copier dans le code dans le presse-papier. Votre navigateur ne supporte' +
-              'peut être pas encore cette fonctionnalité.', 'success'))
+              'peut être pas encore cette fonctionnalité.', 'error'))
     }
   },
   mounted() {

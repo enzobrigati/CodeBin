@@ -71,10 +71,13 @@
               </div>
             </FormulateForm>
             <div class="col-12 p-3">
-              <p>En publiant sur la plateforme vous déclarez avoir lu et accepté notre <a href="/charteutilisateur" target="_blank">Charte Utilisateur</a> ainsi que nos
+              <p>En publiant sur la plateforme vous déclarez avoir lu et accepté notre <a href="/charteutilisateur"
+                                                                                          target="_blank">Charte
+                Utilisateur</a> ainsi que nos
                 <a href="/cgu" target="_blank">Conditions Générales d'Utilisation</a>.</p>
-              <p>Veillez à ne jamais communiquer d'informations sensibles dans vos pastes. Les <b>pastes privés</b> peuvent faire l'objet de vérifications
-              de la part de notre équipe de modération.</p>
+              <p>Veillez à ne jamais communiquer d'informations sensibles dans vos pastes. Les <b>pastes privés</b>
+                peuvent faire l'objet de vérifications
+                de la part de notre équipe de modération.</p>
             </div>
           </div>
         </div>
@@ -90,6 +93,7 @@
 import PasteSidebar from "./PasteSidebar";
 import {axiosInstance} from "../api/axios";
 import {redirectHelper} from "../Helpers/RedirectHelper";
+import {notify} from "../Helpers/notifyHelper";
 
 export default {
   name: "PasteForm",
@@ -102,24 +106,38 @@ export default {
       codeLanguage: 'text',
       codeTitle: null,
       formDatas: null,
-      loading: false
+      loading: false,
+      user: null
     };
   },
   methods: {
     handleSubmit: async function () {
       this.loading = true
-
-      await axiosInstance.post('/pastes', this.formDatas)
-          .then(response => {
-            this.$formulate.resetValidation('pasteForm')
-            this.codeInput = null
-            this.codeLanguage = "text"
-            this.codeTitle = null
-            console.log(response.data)
-            redirectHelper('/paste/' + response.data.id)
-          }).catch(e => console.warn(e))
+      if (this.user) {
+        await axiosInstance.post('/pastes', this.formDatas)
+            .then(response => {
+              this.$formulate.resetValidation('pasteForm')
+              this.codeInput = null
+              this.codeLanguage = "text"
+              this.codeTitle = null
+              console.log(response.data)
+              redirectHelper('/paste/' + response.data.id)
+            }).catch(e => console.warn(e))
+      } else {
+        notify('Oups...', 'Vous devez être connecté pour poster un paste.', 'error')
+      }
       this.loading = false
     }
+  },
+  mounted() {
+    axiosInstance.get('/me')
+        .then(response => {
+          if (response.data.id) {
+            this.user = response.data
+          } else {
+            this.user = null
+          }
+        }).catch(e => console.warn(e))
   }
 };
 </script>
