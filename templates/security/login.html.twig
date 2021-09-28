@@ -15,6 +15,9 @@
                         {% for message in app.flashes('register_success') %}
                             <div class="alert alert-success">{{ message }}</div>
                         {% endfor %}
+                        {% for message in app.flashes('password_reset_success') %}
+                            <div class="alert alert-success">{{ message }}</div>
+                        {% endfor %}
                     </div>
                     <div class="col-12 col-md-6">
                         <label for="inputEmail">Votre adresse email</label>
@@ -27,6 +30,9 @@
                         <input type="password" name="password" id="inputPassword" class="form-control mt-2"
                                autocomplete="current-password"
                                required>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <p><a href="{{ path('app_password_reset_request') }}">Vous avez oublié votre mot de passe ?</a></p>
                     </div>
                     <div class="col-12">
                         <button class="btn btn-dark mt-2 bg-verylightblue" type="submit">

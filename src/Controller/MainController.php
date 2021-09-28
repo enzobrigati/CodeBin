@@ -17,4 +17,16 @@ class MainController extends AbstractController
         ]);
     }
 
+    #[Route('/charteutilisateur', name: 'main.charteutilisateur')]
+    public function charteUtilisateur(): Response
+    {
+        return $this->render('main/charte.html.twig');
+    }
+
+    #[Route('/cgu', name: 'main.cgu')]
+    public function Cgu(): Response
+    {
+        return $this->render('main/cgu.html.twig');
+    }
+
 }

@@ -25,8 +25,10 @@
                <div class="col-12">
                    {{ form_row(form.password) }}
                </div>
+               <p>En vous inscrivant sur la plateforme vous déclarez avoir lu et accepté notre <a href="{{ path('main.charteutilisateur') }}">Charte Utilisateur</a> ainsi que nos
+                   <a href="{{ path('main.cgu') }}">Conditions Générales d'Utilisation</a>.</p>
                <div class="col-12">
-                   <button type="submit" class="btn btn-primary">Créer mon compte</button>
+                   <button type="submit" class="btn btn-info">Créer mon compte</button>
                </div>
                {{ form_end(form) }}
            </div>

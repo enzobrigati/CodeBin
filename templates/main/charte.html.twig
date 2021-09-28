@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Charte Utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card bg-lightblue">
+            <div class="card-header">
+                <h5 class="text-white">Charte Utilisateur</h5>
+            </div>
+            <div class="card-body">
+                <h2 class="text-white">Charte et responsabilité de l'utilisateur.</h2>
+                <p><b>Lexique :</b></p>
+                <ul>
+                    <li>Paste(s) : fait référence à toutes les publications/morceaux de code publiés par l'utilisateur sur le site.</li>
+                    <li>Espaces de partage : fait référence à toutes les pages à partir desquelles vous pouvez poster du contenu librement.</li>
+                </ul>
+                <p>Bien que nous essayons d’éditer ou de supprimer tous les messages et Pastes à contenu inadéquat, sexuellement
+                    choquant ou orienté, abusif, haineux, diffamatoire ou menaçant, qui pourraient être considérés comme
+                    un
+                    obstacle à la vie privée de personnes ou qui violent certaines lois, il nous est impossible de
+                    vérifier
+                    chaque message/paste sur ce genre de système de partage de contenu.
+                    Pour cette raison, vous devez reconnaître que tous les messages et Pastes postés sur le site
+                    expriment l’opinion et les avis de l’auteur du message original et non du site et de ses créateurs.
+                    De ce fait, nous déclinons toute responsabilité et nous ne pouvons pas être tenus pour responsables
+                    des
+                    messages et Pastes postés. Nous ne garantissons pas l’exactitude et la perfection de ces derniers.</p>
+
+                <p>Si vous utilisez les Pastes à des fins autres que celles de partager du code, vous êtes invités à vous exprimer
+                    librement dans le respect des opinions et des droits de chacun.
+                    Les données vous concernant que vous nous transmettrez ne seront utilisées que pour assurer le
+                    fonctionnement du service du site.
+                    Elles ne seront en aucun cas transmises à des tiers sans votre autorisation préalable, sauf
+                    exigences
+                    légales. Vous pouvez si vous le souhaitez utiliser quelque pseudonyme qu’il vous plaira de choisir
+                    dans
+                    le respect des règles suivantes : sont interdits les pseudonymes relevant de l’insulte de l’injure,
+                    évoquant des propos, situations ou pratiques obscènes, grossières, à caractère sexuel ou
+                    attentatoire à
+                    la dignité humaine ou aux bonnes mœurs.
+                    Sont également prohibés les pseudonymes pouvant entraîner un risque de confusion dans l’esprit du
+                    public
+                    quant à l’auteur du message ou à sa qualité ou qualification, ainsi que ceux faisant référence
+                    directement ou indirectement à un signe commercial protégé que l’utilisation du pseudonyme soit ou
+                    non
+                    dénigrante.</p>
+
+                <p>Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui
+                    vous concernent (art. 34 de la loi « Informatique et Libertés » du 6 janvier 1978).
+                    Vous pouvez, à tout moment, demander que vos contributions à cet espace de discussion soient
+                    supprimées.
+                    Les demandes concernant le droit d’accès, de modification et de rectification doivent être adressées
+                    par
+                    courriel, accompagné d’un justificatif d’identité à la personne ou au service en charge du droit
+                    d'accès
+                    et de rectification, mentionné dans la rubrique « <a href="{{ path('main.cgu') }}"><u>Conditions
+                            Générales d'Utilisation</u></a> » du site.
+                    La participation au site est libre mais en vous inscrivant et contribuant par l’envoi d’un message
+                    vous
+                    reconnaissez avoir pris connaissance et accepter les conditions d’utilisation de ce dernier.
+                    Lorsque vous postez un message ou un Paste celui-ci est susceptible d’être lu par un grand nombre de personnes,
+                    voire l’ensemble des internautes, cet acte d’édition peut
+                    engager votre responsabilité personnelle, il convient donc d’être prudent et mesuré.
+                    Les contributions que vous postez dans les espaces de partage doivent être en relation avec les
+                    produits
+                    proposés.</p>
+
+                <p>Les espaces de partage et les Pastes du site sont modérés a posteriori, le contenu que vous postez est
+                    directement publié sans aucun
+                    contrôle préalable. Il est de votre responsabilité de veiller à ce que vos contributions ne portent
+                    pas
+                    préjudice à autrui et soient conforment à la réglementation en vigueur.
+                    Les organisateurs du site et les modérateurs se réservent le droit de retirer toute contribution
+                    qu’ils
+                    estimeraient déplacée, inappropriée, contraire aux lois et règlements, à cette charte d’utilisation
+                    ou
+                    susceptible de porter préjudice directement ou non à des tiers.
+                    Les messages qui ne sont pas en relation avec les thèmes de discussion
+                    peuvent
+                    être supprimés sans préavis par les modérateurs.
+                    <br>
+                    <b class="text-warning">Les modérateurs et administrateurs bénéficient d'un droit de regard sur l'intégralité de votre contenu même si celui-ci
+                    a été désigné comme "privé" lors de sa création, et ce, afin de veiller au bon respect de notre charte utilisateur.</b>
+                    <br>Seront aussi supprimées, sans préjudice
+                    d'éventuelles
+                    poursuites disciplinaires ou judiciaires, les contributions qui :
+                </p>
+                <ul>
+                    <li>1. incitent à la discrimination fondée sur la race, le sexe, la religion, à la haine, à la
+                        violence,
+                        au racisme ou au révisionnisme,
+                    </li>
+                    <li>2.
+                        incitent à la commission de délits,
+                    </li>
+                    <li> 3. sont contraire à l'ordre public et aux bonnes mœurs,</li>
+                    <li>4. font
+                        l’apologie des crimes ou délits et particulièrement du meurtre, viol, des crimes de guerre et
+                        crimes
+                        contre l'humanité,
+                    </li>
+                    <li>5. ont un caractère injurieux, diffamatoire, insultant ou grossier,</li>
+                    <li> 6. portent manifestement atteinte aux droits d’autrui et particulièrement ceux qui portent
+                        atteinte
+                        à l'honneur ou à la réputation d'autrui,
+                    </li>
+                    <li>7. sont liés à un intérêt manifestement commercial ou ont un but
+                        promotionnel
+                        sans objet avec le site.
+                    </li>
+                </ul>
+
+
+                <p>L’utilisation d’un pseudonyme ne rend pas anonyme, conformément à la législation les prestataires
+                    techniques sont tenus de conserver et de déférer à l’autorité judiciaire les informations de
+                    connections
+                    (log, IP, date/heure) permettant la poursuite de l’auteur d’une infraction. Toutes les informations
+                    nécessaires seront donc conservées pour la durée légale prévue. Elles seront détruites au terme du
+                    délai
+                    légal de conservation. Les organisateurs du site se réservent le droit d’exclure de ce dernier, de
+                    façon
+                    temporaire ou définitive, toute personne dont les contributions sont en contradiction avec les
+                    règles
+                    mentionnées dans le présent document. Les organisateurs pourront transmettre aux autorités de police
+                    ou
+                    de justice toutes les pièces ou documents postés sur le site s’ils estiment de leur devoir
+                    d’informer
+                    les autorités compétentes ou que la législation leur en fait obligation.</p>
+
+                <h3 class="text-white">Plus particulièrement</h3>
+
+                <p><b>Vous êtes responsable du contenu que vous postez sur la plateforme.
+                    Nous déclinons toute responsabilité quant à l'utilisation que vous en faites.
+                    Veillez à ne communiquer sous aucun prétexte des informations sensibles à quelque endroit que ce soit sur la plateforme. <br>
+                    <span class="text-warning">Également, nous vous invitons à faire preuve de vigilance lorsque vous
+                    récupérez des morceaux de code sur le site, ces derniers pourraient s'avérer ne pas être fiables.
+                    En aucun cas nous ne pourrons être tenu pour responsable en cas de dommage matériel et immatériel lié
+                    à la récupération de codes malicieux ou erronés. Il est de votre devoir de vérifier en amont le contenu présent sur la plateforme.</span>
+                    <br>
+                        <u>Le principe du droit d'auteur s'applique également sur le site, conformément au  Code de la Propriété Intellectuelle (CPI) du 1er juillet 1992.</u>
+                        <br> De ce fait,
+                    vous ne devez pas récupérer et réutiliser du code sans l'accord de son auteur. La plateforme met également à disposition une option spéciale vous permettant de publier vos contenus en "privé", dans ce
+                    cas vous êtes le seul, ainsi que notre équipe de modération, à pouvoir visualiser ce dernier comme expliquer ci-dessus.
+                    </b>
+
+                </p>
+
+                <p>Le refus de se conformer à ces règles peut donner lieu à une suspension de votre compte, une
+                    fermeture
+                    de votre compte ou un bannissement définitif. Vous acceptez que nous avons l’habilité et le droit de
+                    supprimer, éditer ou
+                    verrouiller tout compte ou contenu à tout moment à notre propre discrétion. Vous devez accepter
+                    aussi le
+                    fait que toutes les informations que vous apporterez par le biais de ces espaces de dicussion sont
+                    stockées dans
+                    une
+                    base de données, et que des "cookies" sont stockés sur votre ordinateur pour conserver vos
+                    informations
+                    de connexion.
+                </p>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

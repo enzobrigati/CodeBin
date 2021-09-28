@@ -13,6 +13,7 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
+    {% block styles %}{% endblock %}
 
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
@@ -22,7 +23,7 @@
 <div id="app">
     <nav id="nav" class="navbar navbar-expand-lg navbar-dark" style="background-color: #34394D">
         <div class="container">
-            <a class="navbar-brand" href="{{ path('main') }}">CodeBin</a>
+            <a class="navbar-brand" href="{{ path('main') }}">CodeBin <span class="badge bg-danger" style="font-size:10px;">Pré-prod</span></a>
             <button
                     class="navbar-toggler"
                     type="button"
@@ -108,7 +109,8 @@
 </div>
 <div class="footer text-center mt-3">
     <p>&copy <a href="{{ path('main') }}" class="text-white">CodeBin - Tous droits réservés</a> - Une création <a
-                href="https://deob.fr" target="_blank">DEOB</a>.</p>
+                href="https://deob.fr" target="_blank">DEOB</a> - <a href="{{ path('main.cgu') }}">Conditions Générales d'Utilisation</a> -
+        <a href="{{ path('main.charteutilisateur') }}">Charte Utilisateur</a>. </p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

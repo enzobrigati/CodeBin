@@ -71,10 +71,8 @@
               </div>
             </FormulateForm>
             <div class="col-12 p-3">
-              <p>En publiant sur la plateforme vous déclarez avoir lu et accepté notre <a href="#">Charte Utilisateur</a> ainsi que nos
-                <a href="#">Conditions Générales d'Utilisation</a>.</p>
-              <p><i class="fas fa-exclamation-triangle"></i> Vous êtes responsable du contenu que vous postez sur la
-                plateforme. Nous déclinons toute responsabilité quant à l'utilisation que vous en faites.</p>
+              <p>En publiant sur la plateforme vous déclarez avoir lu et accepté notre <a href="/charteutilisateur" target="_blank">Charte Utilisateur</a> ainsi que nos
+                <a href="/cgu" target="_blank">Conditions Générales d'Utilisation</a>.</p>
               <p>Veillez à ne jamais communiquer d'informations sensibles dans vos pastes. Les <b>pastes privés</b> peuvent faire l'objet de vérifications
               de la part de notre équipe de modération.</p>
             </div>
