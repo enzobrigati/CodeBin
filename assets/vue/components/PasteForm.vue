@@ -93,7 +93,6 @@
 import PasteSidebar from "./PasteSidebar";
 import {axiosInstance} from "../api/axios";
 import {redirectHelper} from "../Helpers/RedirectHelper";
-import {notify} from "../Helpers/notifyHelper";
 
 export default {
   name: "PasteForm",
@@ -113,32 +112,18 @@ export default {
   methods: {
     handleSubmit: async function () {
       this.loading = true
-      if (this.user) {
-        await axiosInstance.post('/pastes', this.formDatas)
-            .then(response => {
-              this.$formulate.resetValidation('pasteForm')
-              this.codeInput = null
-              this.codeLanguage = "text"
-              this.codeTitle = null
-              console.log(response.data)
-              redirectHelper('/paste/' + response.data.id)
-            }).catch(e => console.warn(e))
-      } else {
-        notify('Oups...', 'Vous devez être connecté pour poster un paste.', 'error')
-      }
+      await axiosInstance.post('/pastes', this.formDatas)
+          .then(response => {
+            this.$formulate.resetValidation('pasteForm')
+            this.codeInput = null
+            this.codeLanguage = "text"
+            this.codeTitle = null
+            console.log(response.data)
+            redirectHelper('/paste/' + response.data.id)
+          }).catch(e => console.warn(e))
       this.loading = false
     }
   },
-  mounted() {
-    axiosInstance.get('/me')
-        .then(response => {
-          if (response.data.id) {
-            this.user = response.data
-          } else {
-            this.user = null
-          }
-        }).catch(e => console.warn(e))
-  }
 };
 </script>
 
