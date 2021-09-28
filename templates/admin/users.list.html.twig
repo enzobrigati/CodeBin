@@ -14,31 +14,33 @@
                 <div class="card bg-lightblue">
                     <div class="card-header">Tous les pastes</div>
                     <div class="card-body">
-                        <table class="table table-responsive bg-verylightblue table-hover border-dark rounded-3 text-white"
-                               id="users">
-                            <thead>
-                            <tr>
-                                <th scope="col">Pseudo</th>
-                                <th scope="col">Membre depuis le</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody class="text-center">
-                            {% for user in users %}
+                        <div class="table-responsive">
+                            <table class="table bg-verylightblue table-hover border-dark rounded-3 text-white"
+                                   id="users">
+                                <thead>
                                 <tr>
-                                    <th scope="row"><a href="{{ path('user.profil', {pseudo: user.pseudo}) }}"
-                                                       target="_blank">{{ user.pseudo }}</a>
-                                    </th>
-                                    <td>{{ user.createdAt|date('d-m-Y') }} | {{ user.createdAt | ago }}</td>
-                                    <td>
-                                        <a href="{{ path('moderation.paste.list') }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Voir tous les pastes</a> &nbsp;
-                                        <a href="{{ path('admin.user.edit', {id: user.id}) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Modifier</a> &nbsp;
-                                        <a href="{{ path('admin.user.delete', {id: user.id}) }}" onclick="return(confirm('Êtes-vous sur ?'))" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Supprimer</a>
-                                    </td>
+                                    <th scope="col">Pseudo</th>
+                                    <th scope="col">Membre depuis le</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="text-center">
+                                {% for user in users %}
+                                    <tr>
+                                        <th scope="row"><a href="{{ path('user.profil', {pseudo: user.pseudo}) }}"
+                                                           target="_blank">{{ user.pseudo }}</a>
+                                        </th>
+                                        <td>{{ user.createdAt|date('d-m-Y') }} | {{ user.createdAt | ago }}</td>
+                                        <td>
+                                            <a href="{{ path('moderation.paste.list') }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Voir tous les pastes</a> &nbsp;
+                                            <a href="{{ path('admin.user.edit', {id: user.id}) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Modifier</a> &nbsp;
+                                            <a href="{{ path('admin.user.delete', {id: user.id}) }}" onclick="return(confirm('Êtes-vous sur ?'))" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Supprimer</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

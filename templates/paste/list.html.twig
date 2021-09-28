@@ -9,26 +9,28 @@
                 <div class="card bg-lightblue">
                     <div class="card-header">Pastes publics</div>
                     <div class="card-body">
-                        <table class="table bg-verylightblue table-hover border-dark rounded-3 table-responsive text-white">
-                            <thead>
-                            <tr>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Utilisateur</th>
-                                <th scope="col">Posté</th>
-                                <th scope="col">Langage</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for paste in pastes %}
-                            <tr>
-                                <th scope="row"><a href="{{ path('paste.show', {id: paste.id}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></th>
-                                <td>{{ paste.user.pseudo }}</td>
-                                <td>{{ paste.createdAt | ago }}</td>
-                                <td><span class="badge bg-primary">{{ paste.language | upper }}</span></td>
-                            </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table bg-verylightblue table-hover border-dark rounded-3 table-responsive text-white">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Utilisateur</th>
+                                    <th scope="col">Posté</th>
+                                    <th scope="col">Langage</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for paste in pastes %}
+                                    <tr>
+                                        <th scope="row"><a href="{{ path('paste.show', {id: paste.id}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></th>
+                                        <td>{{ paste.user.pseudo }}</td>
+                                        <td>{{ paste.createdAt | ago }}</td>
+                                        <td><span class="badge bg-primary">{{ paste.language | upper }}</span></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                         {% if pastes.count <= 0 %}
                             <div class="alert alert-info">Aucun paste n'a été posté pour le moment. <a href="{{ path('main') }}" class="text-primary">Et si vous étiez le premier ?</a> </div>
                         {% endif %}

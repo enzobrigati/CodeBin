@@ -8,7 +8,7 @@
               <h5 class="mb-2 text-white"><b>{{ paste.title ? paste.title : 'untitled' }}</b></h5>
               <p class="mb-0">
                 Posté par
-                <a href="#" class="text-warning">{{ paste.user ? paste.user.pseudo : 'unknown' }}</a>
+                <a :href="'/profil/' + paste.user.pseudo" class="text-warning">{{ paste.user ? paste.user.pseudo : 'unknown' }}</a>
                 le {{ formatDate(paste.createdAt) }}
               </p>
             </div>
