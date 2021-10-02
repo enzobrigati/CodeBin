@@ -37,7 +37,7 @@ class PasteController extends AbstractController
         ]);
     }
 
-    #[Route('/paste/{id}', name: 'paste.show', requirements: ['id' => '[0-9]*'])]
+    #[Route('/paste/{uuid}', name: 'paste.show')]
     public function show(Paste $paste): Response
     {
         if ($paste->getPrivacy() === 'private' && $paste->getUser() !== $this->getUser() && !$this->isGranted('ROLE_MODERATOR')) {

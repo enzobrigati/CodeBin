@@ -28,7 +28,7 @@
                                 <tbody>
                                 {% for paste in pastes %}
                                     <tr>
-                                        <th scope="row"><a href="{{ path('paste.show', {id: paste.id}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></th>
+                                        <th scope="row"><a href="{{ path('paste.show', {uuid: paste.uuid}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></th>
                                         <td>{{ paste.createdAt | ago }}</td>
                                         <td><span class="badge bg-primary">{{ paste.language | upper }}</span></td>
                                         <td><span class="badge bg-extralightblue">{{ paste.privacy | upper }}</span></td>

@@ -97,20 +97,21 @@ class Paste
     private $language = "text";
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="pastes")
-     */
-    #[Groups(['read:paste', 'create:paste'])]
-    private $user;
-
-    /**
      * @ORM\OneToMany(targetEntity=Report::class, mappedBy="paste", orphanRemoval=true)
      */
     private $reports;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="pastes")
+     */
+    #[Groups(['read:paste', 'user:read:paste'])]
+    private $user;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    #[Groups(['read:paste', 'user:read:paste'])]
+    private $uuid;
 
     public function getTitle(): ?string
     {
@@ -172,18 +173,6 @@ class Paste
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Report[]
      */
@@ -210,6 +199,35 @@ class Paste
                 $report->setPaste(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getUuid(): ?string
+    {
+        return $this->uuid;
+    }
+
+    public function setUuid(string $uuid): self
+    {
+        $this->uuid = $uuid;
 
         return $this;
     }

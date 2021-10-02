@@ -100,12 +100,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Paste::class, mappedBy="user")
-     */
-    #[Groups(['user:read:paste'])]
-    private $pastes;
-
-    /**
      * @ORM\OneToMany(targetEntity=Report::class, mappedBy="owner", orphanRemoval=true)
      */
     private $reports;
@@ -124,6 +118,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToOne(targetEntity=PasswordReset::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $passwordResetRequest;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Paste::class, mappedBy="user")
+     */
+    private $pastes;
 
     public function getId(): ?int
     {
@@ -239,36 +238,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|Paste[]
-     */
-    public function getPastes(): Collection
-    {
-        return $this->pastes;
-    }
-
-    public function addPaste(Paste $paste): self
-    {
-        if (!$this->pastes->contains($paste)) {
-            $this->pastes[] = $paste;
-            $paste->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removePaste(Paste $paste): self
-    {
-        if ($this->pastes->removeElement($paste)) {
-            // set the owning side to null (unless already changed)
-            if ($paste->getUser() === $this) {
-                $paste->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Report[]
      */
     public function getReports(): Collection
@@ -335,6 +304,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->passwordResetRequest = $passwordResetRequest;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Paste[]
+     */
+    public function getPastes(): Collection
+    {
+        return $this->pastes;
+    }
+
+    public function addPaste(Paste $paste): self
+    {
+        if (!$this->pastes->contains($paste)) {
+            $this->pastes[] = $paste;
+            $paste->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePaste(Paste $paste): self
+    {
+        if ($this->pastes->removeElement($paste)) {
+            // set the owning side to null (unless already changed)
+            if ($paste->getUser() === $this) {
+                $paste->setUser(null);
+            }
+        }
 
         return $this;
     }

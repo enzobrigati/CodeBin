@@ -65,7 +65,7 @@
                             <tbody>
                             {% for paste in pastes %}
                                 <tr>
-                                    <th scope="row"><a href="{{ path('paste.show', {id: paste.id}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></th>
+                                    <th scope="row"><a href="{{ path('paste.show', {uuid: paste.uuid}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></th>
                                     <td>{{ paste.createdAt | ago }}</td>
                                     <td><span class="badge bg-primary">{{ paste.language | upper }}</span></td>
                                 </tr>
@@ -73,7 +73,7 @@
                             </tbody>
                         </table>
                         {% if pastes.count <= 0 %}
-                            <div class="alert alert-info">Cette utilisateur n'a pas encore posté de paste.</div>
+                            <div class="alert alert-info">Cet utilisateur n'a pas encore posté de paste.</div>
                         {% endif %}
                         <div class="float-end">
                             {{ knp_pagination_render(pastes) }}

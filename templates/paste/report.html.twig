@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card bg-lightblue">
-                    <div class="card-header">Signaler le paste : <a href="{{ path('paste.show', {id: paste.id}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></div>
+                    <div class="card-header">Signaler le paste : <a href="{{ path('paste.show', {uuid: paste.uuid}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></div>
                     <div class="card-body">
                         {{ form_start(form, {'attr':{'class':'row'}}) }}
                         <div class="col-12">

@@ -25,12 +25,23 @@
                                 <tbody>
                                 {% for paste in pastes %}
                                     <tr>
-                                        <th scope="row"><a href="{{ path('paste.show', {id: paste.id}) }}" target="_blank">{{ paste.title ? paste.title : 'untitled' }}</a></th>
-                                        <td>{{ paste.user.pseudo }}</td>
+                                        <th scope="row"><a href="{{ path('paste.show', {uuid: paste.uuid}) }}"
+                                                           target="_blank">{{ paste.title ? paste.title : 'untitled' }}</a>
+                                        </th>
+                                        <td>
+                                            {% if paste.user %}
+                                                {{ paste.user.pseudo }}
+                                            {% else %}
+                                                unknown
+                                            {% endif %}
+                                        </td>
                                         <td>{{ paste.createdAt|date('d-m-Y à H:i') }}</td>
                                         <td><span class="badge bg-primary">{{ paste.language | upper }}</span></td>
-                                        <td><span class="badge bg-extralightblue">{{ paste.privacy | upper }}</span></td>
-                                        <td><a href="{{ path('moderation.paste.delete', {id: paste.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Supprimer</a></td>
+                                        <td><span class="badge bg-extralightblue">{{ paste.privacy | upper }}</span>
+                                        </td>
+                                        <td><a href="{{ path('moderation.paste.delete', {id: paste.id}) }}"
+                                               class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Supprimer</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

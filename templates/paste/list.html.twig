@@ -22,8 +22,16 @@
                                 <tbody>
                                 {% for paste in pastes %}
                                     <tr>
-                                        <th scope="row"><a href="{{ path('paste.show', {id: paste.id}) }}">{{ paste.title ? paste.title : 'untitled' }}</a></th>
-                                        <td>{{ paste.user.pseudo }}</td>
+                                        <th scope="row"><a
+                                                    href="{{ path('paste.show', {uuid: paste.uuid}) }}">{{ paste.title ? paste.title : 'untitled' }}</a>
+                                        </th>
+                                        <td>
+                                            {% if paste.user %}
+                                                <a href="{{ path('user.profil', {pseudo: paste.user.pseudo}) }}">{{ paste.user.pseudo }}</a>
+                                            {% else %}
+                                                unknown
+                                            {% endif %}
+                                        </td>
                                         <td>{{ paste.createdAt | ago }}</td>
                                         <td><span class="badge bg-primary">{{ paste.language | upper }}</span></td>
                                     </tr>
@@ -32,7 +40,9 @@
                             </table>
                         </div>
                         {% if pastes.count <= 0 %}
-                            <div class="alert alert-info">Aucun paste n'a été posté pour le moment. <a href="{{ path('main') }}" class="text-primary">Et si vous étiez le premier ?</a> </div>
+                            <div class="alert alert-info">Aucun paste n'a été posté pour le moment. <a
+                                        href="{{ path('main') }}" class="text-primary">Et si vous étiez le premier ?</a>
+                            </div>
                         {% endif %}
                         <div class="float-end">
                             {{ knp_pagination_render(pastes) }}

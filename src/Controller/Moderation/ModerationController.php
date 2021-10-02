@@ -47,6 +47,15 @@ class ModerationController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/moderate/cancel/{id}', name: 'moderation.report.cancel', requirements: ['id' => '[0-9]*'])]
+    public function cancelReport(Report $report): RedirectResponse
+    {
+        $this->em->remove($report);
+        $this->em->flush();
+        $this->addFlash('moderation_success', 'Le report a bien été supprimé.');
+        return $this->redirectToRoute('moderation.main');
+    }
+
     #[Route(path: '/moderate/delete/{id}', name: 'moderation.paste.delete', requirements: ['id' => '[0-9]*'])]
     public function delete(Paste $paste): RedirectResponse
     {
