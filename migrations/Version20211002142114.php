@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210925151848 extends AbstractMigration
+final class Version20211002142114 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20210925151848 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE report ADD created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', ADD reason LONGTEXT NOT NULL');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_9C567898D17F50A6 ON paste (uuid)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE report DROP created_at, DROP reason');
+        $this->addSql('DROP INDEX UNIQ_9C567898D17F50A6 ON paste');
     }
 }
