@@ -3,5 +3,5 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <paste-form/>
+    <paste-form userid="{{ app.user ? app.user.id : null }}"/>
 {% endblock %}

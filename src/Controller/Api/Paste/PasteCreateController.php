@@ -24,6 +24,9 @@ class PasteCreateController
         if ($this->security->getUser()) {
             $data->setUser($this->security->getUser());
         }
+        if($data->getPrivacy() === 'private' && !$this->security->getUser()) {
+            $data->setPrivacy('unlisted');
+        }
         return $data;
     }
 }

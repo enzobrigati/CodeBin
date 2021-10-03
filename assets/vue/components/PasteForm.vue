@@ -56,7 +56,7 @@
                                     name="privacy"
                                     value="unlisted"
                                     type="select"
-                                    :options="{public: 'Public', unlisted: 'Non listé', private: 'Privé'}"
+                                    :options="privacyOptions"
                                     validation="required|in:public,unlisted,private"
                                     validation-name="visibilité"
                     />
@@ -99,6 +99,9 @@ export default {
   components: {
     PasteSidebar
   },
+  props: {
+    userid: String
+  },
   data: function () {
     return {
       codeInput: null,
@@ -106,7 +109,8 @@ export default {
       codeTitle: null,
       formDatas: null,
       loading: false,
-      user: null
+      user: null,
+      privacyOptions: {public: 'Public', unlisted: 'Non listé', private: 'Privé'}
     };
   },
   methods: {
@@ -121,8 +125,16 @@ export default {
             redirectHelper('/paste/' + response.data.uuid)
           }).catch(e => console.warn(e))
       this.loading = false
+    },
+    handlePrivacyOptions: function () {
+      if(!this.userid) {
+        this.privacyOptions = {public: 'Public', unlisted: 'Non listé'}
+      }
     }
   },
+  mounted() {
+    this.handlePrivacyOptions()
+  }
 };
 </script>
 

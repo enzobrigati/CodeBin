@@ -5,7 +5,7 @@
       <div class="paste_sidebar_list pt-2" v-if="pastes">
         <div class="paste_sidebar_element" v-for="paste in pastes" :key="paste.id">
           <p class="paste_sidebar_element__title mb-0">
-            <a :href="'/paste/' + paste.id">
+            <a :href="'/paste/' + paste.uuid">
               {{ paste.title ? paste.title : 'untitled'}}
             </a>
           </p>
