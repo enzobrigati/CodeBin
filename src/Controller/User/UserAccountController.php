@@ -64,6 +64,7 @@ class UserAccountController extends AbstractController
 
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
             $this->getUser()->setPassword($this->passwordHasher->hashPassword($this->getUser(), $passwordForm->get('_password')->getData()));
+            $this->em->flush();
             $this->addFlash('account_success', 'Votre mot de passe a bien été mis à jour.');
             return $this->redirectToRoute('user.account');
         }
