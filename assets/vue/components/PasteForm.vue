@@ -39,17 +39,22 @@
                                     :options="{
                             text: 'Texte',
                             php: 'PHP',
-                            javascript: 'JavaScript',
-                            html: 'HTML',
-                            css: 'CSS',
-                            json: 'JSON',
+                            javascript: 'Javascript',
+                            html: 'html',
+                            css: 'css',
+                            json: 'json',
+                            yaml: 'yaml',
+                            sql: 'sql',
+                            python: 'Python',
+                            sass: 'sass',
+                            scss: 'scss',
                             markdown: 'Markdown',
                             cpp: 'C++',
                             csharp: 'C#',
                             java: 'JAVA',
                             lua: 'lua'
                           }"
-                                    validation="required|in:text,php,javascript,html,css,json,markdown,cpp,csharp,java,lua"
+                                    validation="required|in:text,php,javascript,html,css,json,markdown,cpp,csharp,java,lua,yaml,python,sql,sass,scss"
                                     validation-name="visibilité"
                     />
                     <FormulateInput label="Visibilité"
@@ -127,7 +132,7 @@ export default {
       this.loading = false
     },
     handlePrivacyOptions: function () {
-      if(!this.userid) {
+      if (!this.userid) {
         this.privacyOptions = {public: 'Public', unlisted: 'Non listé'}
       }
     }

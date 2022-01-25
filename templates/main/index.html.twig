@@ -3,5 +3,15 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+    {% if app.user %}
     <paste-form userid="{{ app.user ? app.user.id : null }}"/>
+    {% else %}
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-info">Vous devez être <a class="text-danger" href="{{ path('app_login') }}">connecté</a> pour poster sur le site.</div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

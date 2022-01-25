@@ -27,6 +27,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
         "post" => [
             "controller" => PasteCreateController::class,
             "denormalization_context" => ["groups" => ["write:paste", "create:paste"]],
+            "security" => "is_granted('ROLE_USER')"
         ]
     ],
     itemOperations: [

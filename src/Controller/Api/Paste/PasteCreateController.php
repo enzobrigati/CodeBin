@@ -17,16 +17,21 @@ class PasteCreateController
         $this->security = $security;
     }
 
-    public function __invoke(Paste $data): Paste
+    public function __invoke(Paste $data): ?Paste
     {
-        $uuid = Uuid::v4();
-        $data->setUuid($uuid);
-        if ($this->security->getUser()) {
-            $data->setUser($this->security->getUser());
-        }
-        if($data->getPrivacy() === 'private' && !$this->security->getUser()) {
-            $data->setPrivacy('unlisted');
-        }
+        $data->setUuid($this->generateRandomString(7));
+        $data->setUser($this->security->getUser());
         return $data;
+    }
+
+    private function generateRandomString($length = 10): string
+    {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            return $randomString;
     }
 }

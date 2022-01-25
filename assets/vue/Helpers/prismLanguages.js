@@ -12,3 +12,8 @@ import 'prismjs/components/prism-cpp';
 import 'prismjs/components/prism-csharp';
 import 'prismjs/components/prism-lua';
 import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-yaml';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-sass';
+import 'prismjs/components/prism-scss';
+import 'prismjs/components/prism-sql';

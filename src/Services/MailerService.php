@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 
@@ -17,10 +18,13 @@ class MailerService
         $this->mailer = $mailer;
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     */
     public function sendMessage($subject, $to, $view, $params = []): void
     {
         $message = (new TemplatedEmail())
-            ->from(new Address('noreply@deob.fr', 'CodeBin - Ne pas Répondre'))
+            ->from(new Address('noreply@avenanceagency.com', 'CodeBin - Ne pas Répondre'))
             ->to($to)
             ->subject($subject)
             ->htmlTemplate($view)

@@ -80,7 +80,7 @@ class UserAccountController extends AbstractController
     public function listPastes(Request $request): Response
     {
         $pastes = $this->paginator->paginate(
-            $this->pasteRepository->findBy(['user' => $this->getUser()]),
+            $this->pasteRepository->findBy(['user' => $this->getUser()], ['createdAt' => 'DESC']),
             $request->query->getInt('page', 1),
             20
         );

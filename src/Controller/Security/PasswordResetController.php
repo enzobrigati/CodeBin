@@ -13,6 +13,7 @@ use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -35,7 +36,7 @@ class PasswordResetController extends AbstractController
      * @param MailerService $mailerService
      * @param UrlGeneratorInterface $urlGenerator
      * @return Response
-     * @throws Exception
+     * @throws Exception|TransportExceptionInterface
      */
     public function index(Request $request, UserRepository $userRepository, MailerService $mailerService, UrlGeneratorInterface $urlGenerator): Response
     {
@@ -96,6 +97,7 @@ class PasswordResetController extends AbstractController
      * @param MailerService $mailerService
      * @param PasswordResetRepository $passwordResetRepository
      * @return Response
+     * @throws TransportExceptionInterface
      */
     public function reset(Request $request, string $hashed_token, UserPasswordHasherInterface $passwordHasher, MailerService $mailerService, PasswordResetRepository $passwordResetRepository): Response
     {
