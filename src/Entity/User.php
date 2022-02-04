@@ -43,7 +43,7 @@ use Symfony\Component\Validator\Constraints\Unique;
     ],
     itemOperations: [
         "get" => [
-            "denormalization_context" => ['groups' => ['read:paste']]
+            "normalization_context" => ['groups' => ['read:paste']]
         ]
     ],
     normalizationContext: ['groups' => ['read:user']]
